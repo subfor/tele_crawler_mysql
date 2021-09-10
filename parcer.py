@@ -9,7 +9,6 @@ def get_data(page_url: str):
     parsed = urlparse(page_url)
     try:
         captured_value = parse_qs(parsed.query)['id_auc'][0]
-        # url = f"https://bets.ueex.com.ua/public/PublicHandler.ashx?CommandName=jResults&id_auc={captured_value}&info=Y&lan=ua&fl_FullNumber=&fl_Direction=&fl_Owner=&fl_Goods=&empty_filter=Y"
         url = f"https://{DOMAIN}/public/PublicHandler.ashx?CommandName=jResults&id_auc={captured_value}&info=Y&lan=ua&fl_FullNumber=&fl_Direction=&fl_Owner=&fl_Goods=&empty_filter=Y"
         response = requests.get(url, timeout=(1, 1))
         val = response.json()
