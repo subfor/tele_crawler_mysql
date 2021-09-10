@@ -8,11 +8,6 @@ BOT_NAME = os.getenv('BOT_NAME')
 API_ID = os.getenv('API_ID')
 API_HASH = os.getenv('API_HASH')
 PUBLIC_NAME = os.getenv('PUBLIC_NAME')
-# app = Client(
-#     "gastr",
-#     api_id=7907774,
-#     api_hash="839f3e75ec531e005e894ab0b7e80db2"
-# )
 
 app = Client(
     "BOT_NAME",
