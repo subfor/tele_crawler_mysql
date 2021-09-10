@@ -10,7 +10,7 @@ API_HASH = os.getenv('API_HASH')
 PUBLIC_NAME = os.getenv('PUBLIC_NAME')
 
 app = Client(
-    "BOT_NAME",
+    BOT_NAME,
     api_id=API_ID,
     api_hash=API_HASH
 )
