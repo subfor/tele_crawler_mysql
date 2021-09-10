@@ -1,3 +1,4 @@
+import os
 import datetime
 import asyncio
 import aiomysql
@@ -8,6 +9,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import declarative_base
 
 TIMEZONE = timezone('Europe/Kiev')
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
 
 DeclarativeBase = declarative_base()
 
@@ -41,7 +44,7 @@ class AuctionData(DeclarativeBase):
 
 async def create_tables():
     engine = create_async_engine(
-        "mysql+aiomysql://root:pass@192.168.3.5:3310/auction_data", echo=False,
+        f"mysql+aiomysql://{DB_USER}:{DB_PASS}@192.168.3.5:3310/auction_data", echo=False,
     )
     async with engine.begin() as conn:
         await conn.run_sync(AuctionData.metadata.drop_all)
@@ -51,7 +54,7 @@ async def create_tables():
 
 async def write_to_db(data: list):
     engine = create_async_engine(
-        "mysql+aiomysql://root:pass@192.168.3.5:3310/auction_data", echo=False,
+        f"mysql+aiomysql://{DB_USER}:{DB_PASS}@192.168.3.5:3310/auction_data", echo=False,
     )
     async with engine.begin() as conn:
         await conn.execute(AuctionData.__table__.insert(), data)
