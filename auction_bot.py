@@ -23,7 +23,7 @@ async def my_handler(client, message):
     try:
         if key_word in message['text']:
             url = message['entities'][1]['url']
-            data_list = get_data(url)
+            data_list = await get_data(url)
 
         await write_to_db(data_list)
     except (IndexError, UnboundLocalError):
